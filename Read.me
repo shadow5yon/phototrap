@@ -1,0 +1,74 @@
+# PhotoTrap v2
+### Advanced Client-Side Penetration Testing Framework with Telegram C2
+
+---
+
+## ⚠️ LEGAL DISCLAIMER
+
+**PhotoTrap is designed SOLELY for:**
+- Authorized penetration testing engagements
+- Security assessments where you have WRITTEN permission
+- Educational purposes in controlled environments
+- Red team exercises within authorized scope
+
+**Unauthorized use against systems you do not own or have explicit permission to test is ILLEGAL** and may violate:
+- Computer Fraud and Abuse Act (CFAA) in the US
+- Computer Misuse Act in the UK
+- Similar cybercrime laws worldwide
+
+The developers assume NO liability for misuse.
+
+---
+
+## 📋 Overview
+
+PhotoTrap is a client-side red team tool that generates decoy HTML pages (masquerading as image/photography content) containing JavaScript payloads that:
+
+1. **Capture geolocation** via browser GPS API
+2. **Detect internal IP addresses** via WebRTC/ICE
+3. **Exfiltrate browser storage**: cookies, localStorage, sessionStorage
+4. **Access camera/microphone** (with user consent prompt)
+5. **Deploy phishing overlay** to capture credentials
+6. **Browser fingerprinting** for device identification
+
+All data is exfiltrated to a **Telegram C2 channel** (or custom proxy server).
+
+---
+
+## ✨ Features
+
+| Feature | Description | Stealth Level |
+|---------|-------------|---------------|
+| Geolocation | Captures lat/lng/accuracy via `navigator.geolocation` | Medium (requires permission) |
+| Network Enum | Internal IP via WebRTC ICE candidates | High (no prompt) |
+| Storage Stealer | Cookies, localStorage, sessionStorage | High |
+| Camera/Mic | Video/audio capture via `getUserMedia` | Low (browser prompt) |
+| Phishing Overlay | Fake "session expired" login form | Medium |
+| Fingerprinting | Screen, canvas, timezone, hardware | High |
+| C2 Proxy Server | Hide Telegram traffic from network monitoring | High |
+
+### Anti-Detection Features
+- Anti-debugging (DevTools detection)
+- Anti-VM checks (WebDriver, plugins)
+- CSP detection
+- Random execution delay (2-5 seconds)
+- XOR obfuscation of sensitive strings
+- Multiple exfiltration methods (XHR, Image beacon, sendBeacon)
+- Split payload mode (load across multiple files)
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.7+
+- Telegram Bot Token (from [@BotFather](https://t.me/BotFather))
+- Telegram Chat ID (from [@userinfobot](https://t.me/userinfobot))
+- A web server (or ngrok for HTTPS)
+
+### Installation
+
+```bash
+# Clone/download the script
+# Install dependencies (for C2 server mode)
+pip install flask flask-cors requests
